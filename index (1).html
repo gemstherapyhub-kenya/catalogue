@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gems Therapy & Sensory Hub – School Catalogue</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fbf8f3;--card:#fff;--ink:#1f2a2e;--mut:#667378;--line:#e6dfd3;--acc:#0f7a6b;--acc2:#e8f4f1;--new:#b4550f;--newbg:#fdeede}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a1c;--card:#1d2528;--ink:#eef2f2;--mut:#9aa8ab;--line:#2c373a;--acc:#3cc4ad;--acc2:#1b3a36;--new:#f0a566;--newbg:#3a2a1b}}
+:root[data-theme="dark"]{--bg:#141a1c;--card:#1d2528;--ink:#eef2f2;--mut:#9aa8ab;--line:#2c373a;--acc:#3cc4ad;--acc2:#1b3a36;--new:#f0a566;--newbg:#3a2a1b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:90px}
+header{padding:18px 16px 10px;max-width:760px;margin:auto}
+h1{font:700 22px Georgia,serif;margin:0;color:var(--acc)}
+.sub{color:var(--mut);font-size:13px;margin:4px 0 10px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+input,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+#q{margin-top:8px}
+main{max-width:760px;margin:auto;padding:0 12px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{padding:11px 14px;font-weight:700;cursor:pointer;background:var(--acc2);color:var(--acc);list-style:none}
+summary::-webkit-details-marker{display:none}
+.r{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 14px;border-top:1px solid var(--line);align-items:center}
+.n{font-weight:600}.w{grid-column:1;color:var(--mut);font-size:12.5px}
+.p{font-size:13px;color:var(--acc);font-weight:600;white-space:nowrap;text-align:right}
+.tag{font-size:10px;background:var(--newbg);color:var(--new);border-radius:6px;padding:1px 5px;margin-left:5px;vertical-align:middle}
+.s{grid-column:2;grid-row:1/3;display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.s button{width:30px;height:30px;border-radius:50%;border:1px solid var(--acc);background:var(--card);color:var(--acc);font-size:18px;line-height:1}
+.s b{min-width:18px;text-align:center}
+.r.on{background:var(--acc2)}
+.r.h{display:none}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:space-between}
+#sum{font-size:13px;color:var(--mut)}
+#go{background:#1faa59;color:#fff;border:0;border-radius:24px;padding:12px 18px;font:700 15px inherit;font-family:inherit}
+#go:disabled{opacity:.45}
+.f{max-width:760px;margin:auto;padding:6px 16px;color:var(--mut);font-size:12px}
+</style></head><body>
+<header>
+<h1>Gems Therapy &amp; Sensory Hub</h1>
+<div class="sub">School catalogue · Free delivery around Nairobi CBD · Tap + to pick items, then send your order on WhatsApp.</div>
+<div class="who"><input id="nm" placeholder="Your name"><input id="sc" placeholder="School / organisation"></div>
+<input id="q" type="search" placeholder="Search items…">
+</header>
+<main id="m"></main>
+<div class="f">Prices in KES. Items without a price: we reply with a quote. Not sure what to choose? Book a free-to-ask advice chat or an OT assessment with our registered occupational therapists.</div>
+<div class="bar"><div id="sum">No items yet</div><button id="go" disabled>Send order on WhatsApp</button></div>
+<script>
+var PHONE="254711320145";
+// Format: name|why it matters|price (leave blank to show "Ask for price")|n = new. Edit prices here.
+var D=[
+["Fine motor and self-care",[
+"Peg board|Builds pincer grip and hand strength needed for writing|3000",
+"Hand squeeze balls (pack of 6)|Strengthens hands and gives a calming outlet|1200",
+"Pencil grips (3 pieces)|Improves pencil hold and writing comfort|600",
+"Beads, large|Eye-hand coordination and stringing practice|1000",
+"Beads, small|Finer finger control for older learners|500",
+"Shoe lace training kit|Teaches tying, a key self-care skill|1500",
+"ADL toolkit|Practice buttons, zips and snaps for independence|2500",
+"Therapy putty set|Graded hand strengthening, fun and calming||n",
+"Loop training scissors|Teaches safe cutting with built-in support||n",
+"Playdough kit with tools|Finger strength, creativity and sensory play||n",
+"Slant writing board|Better posture and wrist position for writing||n",
+"Handwriting tracing boards|Letter formation practice, reusable||n",
+"Tweezers and tongs sorting set|Precision grasp and concentration||n",
+"Lacing cards|Bilateral coordination and sequencing||n"]],
+["Learning and play",[
+"Rainbow tower|Colour, sequencing and hand-eye coordination|1500",
+"Wooden puzzles|Problem solving and visual perception|1000",
+"Lovely blocks|Spatial skills and creative play|1200",
+"Building blocks puzzles|Planning, shape matching and focus|1200",
+"Sunflower spelling blocks|Early spelling and letter recognition|1000",
+"Magic panel|Reusable drawing and pre-writing practice|1300",
+"Magic plate|Drawing, tracing and fine motor control|1450",
+"Ludo games|Turn-taking, counting and social skills|1800",
+"Animal figurines, poultry|Language, pretend play and sorting|1000",
+"Animal figurines, large animals|Language, pretend play and sorting|900",
+"Animal figurines, small animals|Language, pretend play and sorting|600",
+"Visual timetable cards|Predictable routines reduce anxiety and meltdowns||n",
+"Emotion cards|Helps children name and manage feelings||n",
+"Matching and sorting cards|Attention, categorising and early maths||n",
+"Shape sorter|Shape recognition and problem solving||n",
+"Stacking cups|Hand-eye coordination and sequencing||n",
+"Tactile letter and number cards|Multi-sensory literacy and numeracy||n",
+"Counting frame (abacus)|Number sense and one-to-one counting||n",
+"Sand timer set|Teaches waiting, turn-taking and transitions||n"]],
+["Gross motor and balance",[
+"Therapy ball, 55 cm|Core strength, balance and active sitting|2000",
+"Therapy ball, 65 cm|Core strength, balance and active sitting|2500",
+"Therapy ball, 75 cm|Core strength, balance and active sitting|3000",
+"Therapy ball, 85 cm|Core strength, balance and active sitting|3500",
+"Peanut ball|Easier balance and posture work for small children|2000",
+"Balance cushion|Wobble seat that improves focus and trunk control|2000",
+"Trampoline (4 ft)|Heavy work, coordination and energy release|10000",
+"Hammock swing|Calming vestibular input|4000",
+"Wedge with straps|Positioning for prone play and posture|5500",
+"Roller|Trunk control, rolling and deep pressure|6000",
+"Resistance bands|Strength and body awareness|1000",
+"Play fence|Safe, defined play space|9500",
+"Grass carpet (per metre)|Tactile floor surface for play and crawling|3200",
+"Small balls (pack of 50)|Ball pits, throwing and sensory play|1500",
+"Balance beam|Balance, coordination and motor planning||n",
+"Scooter board|Core and upper-body strength, vestibular input||n",
+"Crash mat|Safe landing for movement and sensory seeking||n",
+"Hopscotch / stepping stones|Motor planning and balance in a game||n",
+"Play tunnel|Crawling, body awareness and imaginative play||n",
+"Wobble stool|Active sitting that helps classroom attention||n"]],
+["Sensory and calming",[
+"Noise-reducing earmuffs|Cuts noise for sound-sensitive learners|2200",
+"Sensory brush|Tactile input and calming routines|2500",
+"LED bubble tube|Visual calming and focus in a quiet corner|5000",
+"Chew tubes|Safe oral input, reduces chewing on clothes and pencils|400 to 1,000",
+"Fidget toys|Quiet hand fidgets that help attention|350",
+"Sonic toothbrush|Gentle vibration helps with oral sensitivity|1600",
+"Massage gun, standard|Muscle relaxation and sensory input|3000",
+"Massage gun, hot and cold|Relaxation with temperature input|3500",
+"Massager|Deep, calming touch|3800",
+"Oral motor kit|Supports feeding, speech and oral awareness||n",
+"Tactile sensory bin kit|Safe exploration for touch-sensitive children||n",
+"Textured sensory balls|Touch, grip and calming hand play||n",
+"Bubble and pinwheel set|Breath control and calm-down breathing||n",
+"Calm corner tent|A quiet retreat to self-regulate||n"]],
+["Weights and deep pressure",[
+"Ankle and wrist weights, 1 kg|Deep pressure for body awareness and calm|1500",
+"Ankle and wrist weights, 2 kg|Deep pressure for body awareness and calm|2000",
+"Ankle and wrist weights, 3 kg|Deep pressure for body awareness and calm|2500",
+"Ankle and wrist weights, 4 kg|Deep pressure for body awareness and calm|3000",
+"Ankle and wrist weights, 5 kg|Deep pressure for body awareness and calm|3800",
+"Weighted jacket (5 kg)|Calming pressure that helps focus and settling|9000",
+"Weighted lap pad|Helps learners stay seated and focused at a desk||n",
+"Weighted blanket|Comfort and calm for rest and regulation||n"]],
+["Clinic and posture equipment",[
+"Posture corrector|Cues upright sitting|1500",
+"3D mirror|Visual feedback for movement and posture|9000",
+"Tongue depressor|Oral-motor assessment and therapy|800",
+"Treadmill|Gait, endurance and fitness training|28000",
+"Suction machine, manual|Airway clearance when needed|10500",
+"Suction machine, electric (1 bottle)|Airway clearance when needed|13000",
+"Foam puzzle floor mat|Soft, safe floor for therapy and play||n",
+"Adjustable footrest|Feet support improves sitting posture at desks||n"]]
+];
+var Q={},ix=0,items=[];
+var m=document.getElementById("m");
+function fmt(p){return !p?"Ask for price":(/^\d+$/.test(p)?Number(p).toLocaleString("en-KE"):p)}
+D.forEach(function(c){
+ var d=document.createElement("details");d.open=true;
+ d.innerHTML="<summary>"+c[0]+"</summary>";
+ c[1].forEach(function(l){
+  var a=l.split("|"),id=ix++;items.push({id:id,n:a[0],p:a[2]});
+  var r=document.createElement("div");r.className="r";r.id="r"+id;
+  r.innerHTML='<div class="n">'+a[0]+(a[3]?'<span class="tag">NEW</span>':"")+'</div><div class="w">'+a[1]+'</div><div class="s"><span class="p">'+fmt(a[2])+'</span><button data-i="'+id+'" data-d="-1" aria-label="Less">−</button><b id="q'+id+'">0</b><button data-i="'+id+'" data-d="1" aria-label="More">+</button></div>';
+  d.appendChild(r)});
+ m.appendChild(d)});
+m.addEventListener("click",function(e){
+ var b=e.target.closest("button");if(!b)return;
+ var i=+b.dataset.i,v=(Q[i]||0)+ +b.dataset.d;if(v<0)v=0;Q[i]=v;
+ document.getElementById("q"+i).textContent=v;
+ document.getElementById("r"+i).classList.toggle("on",v>0);upd()});
+function upd(){
+ var t=0,k=0;items.forEach(function(x){if(Q[x.id]){k++;t+=Q[x.id]}});
+ document.getElementById("sum").textContent=t?t+" item"+(t>1?"s":"")+" · "+k+" product"+(k>1?"s":""):"No items yet";
+ document.getElementById("go").disabled=!t}
+document.getElementById("q").addEventListener("input",function(){
+ var s=this.value.toLowerCase();
+ items.forEach(function(x){document.getElementById("r"+x.id).classList.toggle("h",s&&x.n.toLowerCase().indexOf(s)<0)})});
+document.getElementById("go").onclick=function(){
+ var nm=document.getElementById("nm").value.trim(),sc=document.getElementById("sc").value.trim();
+ var L=["Hello Gems, I would like to order:",""],tot=0,all=true;
+ items.forEach(function(x){var q=Q[x.id];if(!q)return;
+  var pr=/^\d+$/.test(x.p||"")?+x.p:null;
+  if(pr===null)all=false;else tot+=pr*q;
+  L.push("• "+x.n+" x"+q+(pr!==null?" (KES "+(pr*q).toLocaleString("en-KE")+")":" (price?)"))});
+ if(tot)L.push("","Total"+(all?"":" (priced items)")+": KES "+tot.toLocaleString("en-KE"));
+ L.push("","Name: "+(nm||"-"),"School/Organisation: "+(sc||"-"),"Delivery location: ");
+ location.href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(L.join("\n"))};
+</script></body></html>
